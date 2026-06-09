@@ -36,20 +36,25 @@ currently make tool interoperability painful.
   grammars; archives stay readable forever because each `.jast`
   container embeds the grammar that decoded it.
 
-- **Per-grammar Python packages.** Auto-generated Pydantic models
-  from any rawast grammar — `pip install rawast-lef` gives you
-  `from rawast_lef import Library, Cell, Pin` with IDE autocomplete
-  and runtime validation; construct, validate, and write LEF files
-  from typed Python objects.
+- **Typed Python from any grammar.** `rawast pydantic <grammar>`
+  emits a Pydantic v2 module mirroring the grammar's parse/save
+  shape — typed fields, IDE autocomplete, runtime validation, no
+  duplicate type definitions to maintain. `rawast pycode <grammar>
+  <file>` reads a real file and emits Python source that
+  reconstructs the typed model — useful for fixtures, tutorials,
+  and programmatic editing of existing files.
 
 ## Projects
 
 - **[rawast](https://github.com/edacommons/rawast)** — the
   data-driven bidirectional PEG parser engine. One grammar drives
-  parse, save, and validate. Production GDSII files (GF180MCU, IHP130
-  layouts) parse cleanly through the data-driven grammar; round-trip
-  byte-identical on tested inputs. *In private development; public
-  release planned for the M4 milestone.*
+  parse, save, and validate. **Shipped:** `pip install rawast`
+  (MIT, on PyPI). Verified on a 3,132-file production corpus:
+  1,171/1,171 GDSII files parse (750/750 byte-equivalent
+  round-trip), 263/263 LEF round-trip across cell + tech LEFs
+  (Sky130, asap7, gf130bcd, ihp-sg13g2, NanGate, gf180), 435/435
+  DEF round-trip including a 100MB+ production output, 1,440/1,440
+  OpenROAD Tcl flow scripts.
 
 ## Why this organisation exists
 
