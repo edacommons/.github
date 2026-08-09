@@ -1,0 +1,3 @@
+# Sponsor button for every repository in the organisation that does not
+# carry its own FUNDING.yml. rawast has one; this covers the rest.
+github: [lanserge]
